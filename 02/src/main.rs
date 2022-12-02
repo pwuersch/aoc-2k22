@@ -2,14 +2,14 @@
 
 use std::{error::Error, result::Result};
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Copy)]
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 enum Hand {
     Rock = 1,
     Paper = 2,
     Scissors = 3,
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Copy)]
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 enum Outcome {
     Win = 6,
     Draw = 3,
@@ -49,7 +49,7 @@ fn one() -> Result<i32, Box<dyn Error>> {
     let score = input
         .split_terminator("\n")
         .map(|line| {
-            let mut iter = line.split_terminator(" ");
+            let mut iter = line.split_whitespace();
             let oponent = Hand::from(iter.next().unwrap());
             let me = Hand::from(iter.next().unwrap());
 
