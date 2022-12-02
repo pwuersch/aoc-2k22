@@ -5,15 +5,14 @@ use std::io::Read;
 fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     println!("a: {}", one()?);
     println!("b: {}", two()?);
+    aoc_lib::print_result(&one()?, &two()?);
     Ok(())
 }
 
 fn one() -> std::result::Result<i32, Box<dyn std::error::Error>> {
-    let mut file = std::fs::File::open("./input.txt")?;
-    let mut content = String::new();
-    file.read_to_string(&mut content);
+    let mut input = aoc_lib::read_input()?;
 
-    return Ok(content
+    return Ok(input
         .split("\n\n")
         .map(|elf| {
             elf.split_terminator("\n")
@@ -24,11 +23,9 @@ fn one() -> std::result::Result<i32, Box<dyn std::error::Error>> {
 }
 
 fn two() -> std::result::Result<i32, Box<dyn std::error::Error>> {
-    let mut file = std::fs::File::open("./input.txt")?;
-    let mut content = String::new();
-    file.read_to_string(&mut content);
+    let mut input = aoc_lib::read_input()?;
 
-    let mut elves: Vec<i32> = content
+    let mut elves: Vec<i32> = input
         .split("\n\n")
         .map(|elf| {
             elf.split_terminator("\n")
